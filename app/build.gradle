@@ -1,0 +1,47 @@
+apply plugin: 'com.android.application'
+
+android {
+    compileSdkVersion 30
+    buildToolsVersion "30.0.2"
+    signingConfigs {
+        release {
+            keyAlias 'test'
+            keyPassword '123456'
+            storeFile file('jiachang.jks')
+            storePassword '123456'
+        }
+    }
+    defaultConfig {
+        applicationId "com.pateo.jiachangapp"
+        minSdkVersion 26
+        targetSdkVersion 30
+        versionCode 1
+        versionName "1.0"
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
+
+    buildTypes {
+        debug {
+            signingConfig signingConfigs.release
+        }
+        profile {
+            signingConfig signingConfigs.release
+        }
+        release {
+            signingConfig signingConfigs.release
+        }
+    }
+}
+
+dependencies {
+    implementation fileTree(dir: "libs", include: ["*.jar"])
+    implementation 'androidx.appcompat:appcompat:1.2.0'
+    implementation 'androidx.constraintlayout:constraintlayout:2.0.4'
+    testImplementation 'junit:junit:4.12'
+    androidTestImplementation 'androidx.test.ext:junit:1.1.2'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
+    implementation 'com.tbruyelle.rxpermissions2:rxpermissions:0.9.4@aar'
+    implementation "io.reactivex.rxjava2:rxjava:2.0.9"
+
+}
